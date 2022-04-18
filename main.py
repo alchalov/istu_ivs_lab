@@ -69,6 +69,7 @@ new_data = new_data.reindex(columns=columns_titles)
 
 # Сводим таблицу по всем годам в единую таблицу
 data = pd.concat([old_data, new_data], axis=0)
+print(data.head(5))
 
 # Удалаляем поле данных о коррупции. Оно единственное с пропущенными данными.
 data[data['Perceptions of corruption'].isna()]
@@ -120,7 +121,7 @@ plt.legend(fontsize = 15)
 
 ax.set_xticklabels(['Доход','Семья', 'Здоровье', 'Свобода', 'Щедрость', 'Доверие'])
 
-# 5 самых счастливых стран
+# 10 самых счастливых стран
 country_score_avg = data[data['Year']==2019].groupby(by = ['Country or region'])['Score'].mean().reset_index()
 table_best = country_score_avg.sort_values(by = 'Score', ascending = False).head(10)
 
